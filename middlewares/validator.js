@@ -1,6 +1,27 @@
-const {body, param } = require('express-validator');
+const {body, param, validationResult } = require('express-validator');
 const mongoose = require('mongoose');
 const Artist = require('../models/artistModel');
+
+
+// Middleware to validate MongoDB ObjectId format
+// This middleware checks if the provided ID is a valid MongoDB ObjectId
+const validateObjectId = [
+    param('id').custom((value) => {
+        if (!mongoose.Types.ObjectId.isValid(value)) {
+            throw new Error('Invalid ID format. Please provide a valid MongoDB ObjectId.');
+        }
+        return true;
+    }),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+        next();
+    }
+];
+
+
 
 
 // Custom validation to check if the artist ID exists in the database
@@ -16,13 +37,6 @@ const validateArtistIdExists = body('artist_id').custom(async (value, { req }) =
     return true;
 });
 
-// Custom validation function to check if the ObjectId is valid
-const validateObjectId = param('_id').custom((value) => {
-    if (!mongoose.Types.ObjectId.isValid(value)) {
-        throw new Error('Invalid ID format');
-    }   
-    return true;
-});
 
 // Artist validation rules
 const validateArtistRules = [
@@ -87,19 +101,11 @@ const validateSongRules = [
 ];
 
 
-// ID validation for routes that require an ID parameter
-const validateIdParam = [
-    param('id')
-        .notEmpty()
-        .withMessage('ID parameter is required')
-        .custom(validateObjectId)
-        .withMessage('Invalid ID format.There is an error.'),
-];
 
 module.exports = {
     validateArtistRules,
     validateSongRules,
-    validateIdParam,
+    validateObjectId,
     validateArtistIdExists
 };
 
