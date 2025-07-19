@@ -22,6 +22,16 @@
         }
       }
     },
+    "/api-docs/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/songs/": {
       "get": {
         "description": "",
@@ -41,6 +51,32 @@
         "description": "",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "album": { 
+                  "example": "any"
+                },
+                "year": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "artist_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
         ],
         "responses": {
           "201": {
@@ -89,6 +125,30 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "album": {
+                  "example": "any"
+                },
+                "year": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "artist_id": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -117,8 +177,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
@@ -138,6 +198,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -145,6 +208,29 @@
         "description": "",
         "produces": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "country": {
+                  "example": "any"
+                },
+                "year_start": {
+                  "example": "any"
+                }
+              }
+            }
+          }
         ],
         "responses": {
           "201": {
@@ -176,6 +262,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -190,6 +279,27 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "genre": {
+                  "example": "any"
+                },
+                "country": {
+                  "example": "any"
+                },
+                "year_start": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -198,6 +308,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -215,11 +328,14 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

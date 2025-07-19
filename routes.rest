@@ -1,34 +1,50 @@
-# Get all songs
+### Get all songs
 GET http://localhost:3000/songs  
 
-# Add a new song
+### Add a new song
 POST http://localhost:3000/songs
 
-# Get a specific song by ID
+{
+    "title": "Levitate",
+    "album": "Album Name",
+    "year": 2023,
+    "genre": "Genre",
+    "artist_id": "Artist ID"
+}
+
+### Get a specific song by ID
 GET http://localhost:3000/songs/{id}
 
-# Update a specific song by ID
+### Update a specific song by ID
 PUT http://localhost:3000/songs/{id}
 
-# Delete a specific song by ID
+
+### Delete a specific song by ID
 DELETE http://localhost:3000/songs/{id}
 
 
 
-# Get all artists
+### Get all artists
 GET http://localhost:3000/artists
 
-# Add a new artist
+### Add a new artist
 POST http://localhost:3000/artists
 
-# Get a specific artist by ID
+{
+    "name": "Artist Name",
+    "genre": "Genre",
+    "country": "Country",
+    "year_start": 2020
+}
+
+### Get a specific artist by ID
 GET http://localhost:3000/artists/{id}
 
-# Update a specific artist by ID
+### Update a specific artist by ID
 PUT http://localhost:3000/artists/{id}
 
 
-# Delete a specific artist by ID
+### Delete a specific artist by ID
 DELETE http://localhost:3000/artists/{id}
 
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const mongodb = require('./data/database');
+const connectDB = require('./data/database');
 const bodyParser = require('body-parser');
 const app = express();
 const swaggerUi = require('swagger-ui-express');
@@ -14,14 +14,27 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/', require('./routes'));
 
 
-mongodb.initDb((err) => {
-  if (err) {
-    console.log('Database connection failed:', err);
-  } else {
-    app.listen(port, () => {console.log(`Server is running at http://localhost:${port}`);});
-    console.log('Database connection established successfully');
-  }
-});
+// Connect to the database
+connectDB()
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`Server is running at http://localhost:${port}`);
+        });
+    })
+    .catch(err => {
+        console.error('Database connection failed:', err);
+    });
+
+
+// Connect to MongoDB
+// mongodb.initDb((err) => {
+//   if (err) {
+//     console.log('Database connection failed:', err);
+//   } else {
+//     app.listen(port, () => {console.log(`Server is running at http://localhost:${port}`);});
+//     console.log('Database connection established successfully');
+//   }
+// });
 
 // Export the app for testing purposes
 module.exports = app;
