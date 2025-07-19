@@ -5,7 +5,7 @@
     "description": "This is an API for finding songs and musical artists.",
     "version": "1.0.0"
   },
-  "host": "cse341-project1-uyjq.onrender.com",
+  "host": "https://project2-musicapi.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
