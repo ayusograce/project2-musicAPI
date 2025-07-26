@@ -32,7 +32,7 @@ app
     })
     .use(cors({methods: "GET, POST, PUT, DELETE, PATCH, OPTIONS"}))
     .use(cors({origin: "*"}))
-    .use("/", require('./routes'))
+    // .use("/", require('./routes'))
     .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 passport.use(new GithubStrategy({
