@@ -34,6 +34,9 @@ const createArtist = async (req, res) => {
         const artist = new artistModel({
             name: req.body.name,
             genre: req.body.genre,
+            last_single: req.body.last_single,
+            last_single_year: req.body.last_single_year,
+            language: req.body.language,
             country: req.body.country,
             year_start: req.body.year_start,
         });
@@ -52,6 +55,9 @@ const updateArtist = async (req, res) => {
         const artist = await artistModel.findByIdAndUpdate(artistId, {
             name: req.body.name,
             genre: req.body.genre,
+            last_single: req.body.last_single,
+            last_single_year: req.body.last_single_year,
+            language: req.body.language,
             country: req.body.country,
             year_start: req.body.year_start,
         }, { new: true });

@@ -22,8 +22,6 @@ const validateObjectId = [
 ];
 
 
-
-
 // Custom validation to check if the artist ID exists in the database
 // This function will be used in the validation rules for songs to ensure the artist exists
 const validateArtistIdExists = body('artist_id').custom(async (value, { req }) => {
@@ -51,6 +49,24 @@ const validateArtistRules = [
         .withMessage('Artist genre is required')
         .isString()
         .withMessage('Artist genre must be a string')   
+        .trim(),
+    body('last_single')
+        .notEmpty()
+        .withMessage('Artist last single is required')
+        .isString()
+        .withMessage('Artist last single must be a string')
+        .trim(),
+    body('last_single_year')
+        .notEmpty()
+        .withMessage('Artist last single year is required')
+        .isInt({ min: 1900, max: new Date().getFullYear() })
+        .withMessage('Artist last single year must be a valid year between 1900 and the current year')
+        .toInt(),
+    body('language')
+        .notEmpty()
+        .withMessage('Artist language is required')
+        .isString()
+        .withMessage('Artist language must be a string')
         .trim(),
     body('country')
         .notEmpty()
